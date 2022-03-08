@@ -1,0 +1,31 @@
+name: Testing
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  testing_pipeline:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: server
+    services:
+      # Label used to access the service container
+      
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1        
+      with:
+        node-version: '16.8.0'
+    - name: npm install 
+      run: npm install
+    - name: run lint
+      run: npm run lint
+    - name: run jest tests
+      #env:
+      run: npm test
