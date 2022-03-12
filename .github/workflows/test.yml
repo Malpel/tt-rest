@@ -27,5 +27,6 @@ jobs:
     - name: run lint
       run: npm run lint
     - name: run jest tests
-      #env:
+      env:
+        PORT: ${{ secrets.PORT }}
       run: npm test
