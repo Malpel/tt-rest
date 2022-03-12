@@ -31,6 +31,9 @@ jobs:
   Push_to_Docker:
     name: Push image to DockerHub
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
     needs: testing_pipeline
     steps:
       - name: checkout
