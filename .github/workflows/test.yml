@@ -31,13 +31,12 @@ jobs:
   Push_to_Docker:
     name: Push image to DockerHub
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: server
     needs: testing_pipeline
     steps:
       - name: checkout
         uses: actions/checkout@v2
+        with:
+          context: server
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
