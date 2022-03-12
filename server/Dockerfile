@@ -2,7 +2,7 @@ FROM node:16.8-alpine
 
 WORKDIR /usr/src/server
 
-COPY package* ./server
+COPY package* ./
 
 RUN npm ci
 
