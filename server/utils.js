@@ -1,7 +1,25 @@
 
 const parseAndSum = (intString) => {
-  const integers = intString.split(',').map(i => parseInt(i));
+  const integersArr = intString.split(',');
+  const integers = [];
+
+  for (const i in integersArr) {
+    const int = parseNumber(integersArr[i]);
+
+    if (int === -1) return -1;
+
+    integers.push(int);
+  }
+
+  console.log(integers);
+
   return integers.reduce((prev, current) => prev + current, 0);
+};
+
+const parseNumber = (int) => {
+  const intRegex = /^[0-9]+$/;
+  if (int.match(intRegex)) return parseInt(int);
+  return -1;
 };
 
 const isPrime = (int) => {
@@ -24,5 +42,6 @@ const isPrime = (int) => {
 
 module.exports = {
   parseAndSum,
-  isPrime
+  isPrime,
+  parseNumber
 };

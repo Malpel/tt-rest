@@ -1,4 +1,5 @@
-import PrimeForm from "./components/PrimeForm";
+import React from 'react';
+import PrimeForm from './components/PrimeForm';
 
 const App = () => {
   return (
