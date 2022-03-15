@@ -28,7 +28,7 @@ jobs:
         PORT: ${{ secrets.PORT }}
       run: npm test
 
-  Push_to_Docker:
+  Push_server_to_Docker:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: testing_pipeline
@@ -47,3 +47,23 @@ jobs:
           tags: malpel/tt-rest:latest
           context: .
           file: ./server/Dockerfile
+
+  Push_client_to_Docker:
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+    #needs: testing_pipeline
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: malpel/tt-client:latest
+          context: .
+          file: ./client/Dockerfile
