@@ -2,7 +2,7 @@ FROM node:16.8-alpine as build
 
 WORKDIR /app
 
-COPY package* ./
+COPY ./client/package* ./
 
 RUN npm ci
 
