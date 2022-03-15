@@ -7,6 +7,6 @@ COPY ./server/package* ./
 
 RUN npm ci
 
-COPY . ./
+COPY ./server/ ./
 
 CMD npm start
