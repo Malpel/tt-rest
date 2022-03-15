@@ -2,13 +2,12 @@ FROM node:16.8-alpine as build
 
 WORKDIR /app
 
+# github actions workflow won't work without ./client/
 COPY ./client/package* ./
 
 RUN npm ci
 
-CMD [ "cd", "client" ]
-
-COPY . .
+COPY . ./
 
 RUN npm run build
 
