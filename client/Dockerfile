@@ -6,6 +6,8 @@ COPY ./client/package* ./
 
 RUN npm ci
 
+CMD [ "cd", "client" ]
+
 COPY . .
 
 RUN npm run build
