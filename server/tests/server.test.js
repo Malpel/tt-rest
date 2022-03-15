@@ -65,12 +65,12 @@ test('sumandcheck works and returns json', async () => {
 
 test('sumandcheck returns correct json for prime sum', async () => {
   const response = await api.get(`${sumandcheckUrl}&integers=10,10,10,10,20,20,20,1`);
-  expect(response.body).toStrictEqual({ 'result': 101, 'isPrime': true });
+  expect(response.body).toStrictEqual({ 'sum': 101, 'isPrime': true });
 });
 
 test('sumandcheck returns correct json for non-prime sum', async () => {
   const response = await api.get(`${sumandcheckUrl}&integers=10,10,10,10,20,20,20`);
-  expect(response.body).toStrictEqual({ 'result': 100, 'isPrime': false });
+  expect(response.body).toStrictEqual({ 'sum': 100, 'isPrime': false });
 });
 
 test('sumandcheck malformed request is handled appropriately', async () => {

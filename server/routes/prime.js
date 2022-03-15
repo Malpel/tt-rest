@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { parseAndSum, isPrime, parseNumber } = require('../utils');
+const { parseAndSum, isPrime, parseInteger, actions } = require('../utils');
 
 router.get('/', (req, res) => {
   const action = req.query.action;
   let result = {};
 
-  if (action === 'sumandcheck') {
+  if (action === actions.SUMANDCHECK) {
     const intString = req.query.integers;
 
     if (!intString) return res.status(400).send({ error: 'malformed request' });
@@ -14,12 +14,12 @@ router.get('/', (req, res) => {
 
     if (sum === -1) return res.status(400).send({ error: 'malformed request' });
 
-    result.result = sum;
+    result.sum = sum;
     result.isPrime = isPrime(sum);
-  } else if (action === 'checkprime') {
+  } else if (action === actions.CHECKPRIME) {
     const int = req.query.integer;
 
-    if (!int || parseNumber(int) === -1) return res.status(400).send({ error: 'malformed request' });
+    if (!int || parseInteger(int) === -1) return res.status(400).send({ error: 'malformed request' });
 
     result.isPrime = isPrime(int);
   } else {

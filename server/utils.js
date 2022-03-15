@@ -4,7 +4,7 @@ const parseAndSum = (intString) => {
   const integers = [];
 
   for (const i in integersArr) {
-    const int = parseNumber(integersArr[i]);
+    const int = parseInteger(integersArr[i]);
 
     if (int === -1) return -1;
 
@@ -16,7 +16,7 @@ const parseAndSum = (intString) => {
   return integers.reduce((prev, current) => prev + current, 0);
 };
 
-const parseNumber = (int) => {
+const parseInteger = (int) => {
   const intRegex = /^[0-9]+$/;
   if (int.match(intRegex)) return parseInt(int);
   return -1;
@@ -40,8 +40,14 @@ const isPrime = (int) => {
   return true;
 };
 
+const actions = Object.freeze({
+  CHECKPRIME: 'checkprime',
+  SUMANDCHECK: 'sumandcheck'
+});
+
 module.exports = {
   parseAndSum,
   isPrime,
-  parseNumber
+  parseInteger,
+  actions
 };
