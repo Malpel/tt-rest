@@ -7,7 +7,7 @@ COPY ./client/package* ./
 
 RUN npm ci
 
-COPY . ./
+COPY ./client/ ./
 
 RUN ls public && npm run build
 
