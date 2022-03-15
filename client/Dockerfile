@@ -9,7 +9,7 @@ RUN npm ci
 
 COPY . ./
 
-RUN npm run build --if-present
+RUN ls build && npm run build
 
 FROM nginx:stable-alpine
 
