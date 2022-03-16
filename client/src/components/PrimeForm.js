@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import primeService from '../services/primeService';
 import actions from '../actions';
-import './PrimeForm.css';
+import { selectedStyle, buttonStyle, inputStyle, submitStyle } from './styles';
 
 const PrimeForm = () => {
   const [input, setInput] = useState('');
   const [action, setAction] = useState('');
   const [result, setResult] = useState('');
+  const [checkprimeSelected, setCheckprimeSelected] = useState(false);
+  const [sumandcheckSelected, setSumandcheckSelected] = useState(false);
 
   const submitPrime = async (event) => {
     event.preventDefault();
@@ -22,26 +24,44 @@ const PrimeForm = () => {
     }
     setAction('');
     setInput('');
+    setCheckprimeSelected(false);
+    setSumandcheckSelected(false);
   };
 
-  const selectAction = (action, event) => {
+  const selectAction = (actionOption, event) => {
     event.preventDefault();
-    setAction(action);
+    setAction(actionOption);
+
+    if (actionOption === actions.CHECKPRIME) {
+      setCheckprimeSelected(true);
+      setSumandcheckSelected(false);
+    } else {
+      setCheckprimeSelected(false);
+      setSumandcheckSelected(true);
+    }
+
     setResult('');
   };
 
   return (
     <div>
       <form onSubmit={submitPrime}>
-        <button onClick={e => selectAction(actions.CHECKPRIME, e)}>Checkprime</button>
-        <button onClick={e => selectAction(actions.SUMANDCHECK, e)}>Sumandcheck</button>
+        <div>
+          <button onClick={e => selectAction(actions.CHECKPRIME, e)}
+            style={checkprimeSelected ? selectedStyle : buttonStyle}>Checkprime</button>
+          <button onClick={e => selectAction(actions.SUMANDCHECK, e)}
+            style={sumandcheckSelected ? selectedStyle : buttonStyle}>Sumandcheck</button>
+        </div>
+        <br />
         {action === '' ?
           <p>Select action above</p>
           : <div>
             {action === actions.CHECKPRIME ?
-              <input type='number' value={input} onInput={e => setInput(e.target.value)} />
-              : <input value={input} onInput={e => setInput(e.target.value)} />}
-            <button type="submit">Submit</button>
+              <input type='number' value={input} onInput={e => setInput(e.target.value)}
+                placeholder='Enter an integer' style={inputStyle} />
+              : <input value={input} onInput={e => setInput(e.target.value)}
+                placeholder='Enter a list of integers, e.g. 1,2,3' style={inputStyle} />}
+            <button type="submit" style={submitStyle}>Submit</button>
           </div>
         }
       </form>
@@ -50,7 +70,7 @@ const PrimeForm = () => {
         <h3>{result}</h3>
       </div>
 
-    </div>
+    </div >
   );
 };
 

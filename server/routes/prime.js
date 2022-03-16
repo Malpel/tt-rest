@@ -21,6 +21,7 @@ router.get('/', (req, res) => {
 
     if (!int || parseInteger(int) === -1) return res.status(400).send({ error: 'malformed request' });
 
+    result.integer = int;
     result.isPrime = isPrime(int);
   } else {
     return res.status(400).send({ error: 'unknown action' });
