@@ -24,15 +24,18 @@ jobs:
 
   cypress-run:
     runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: client
     steps:
       - uses: actions/checkout@v2
       - uses: cypress-io/github-action@v2
         with:
           wait-on: "http://localhost:3000, http://localhost:3001"
       - name: start client
-        working-directory: client
         run: npm start
       - name: start server
+        working-directory: server
         run: npm run start:test
         
 
