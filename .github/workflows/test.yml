@@ -18,20 +18,11 @@ jobs:
       working-directory: server
       run: |
           npm install
+          npm run lint
           npm test
           npm run start:test
       env:
         PORT: ${{ secrets.PORT }}
-    
-    - name: Cypress run
-      uses: cypress-io/github-action@v2
-      with:
-        context: ./client
-        build: npm run build
-        start: npm start
-        wait-on: 
-          http://localhost:3000
-          http://localhost:3001
 
   Push_server_to_Docker:
     name: Push server image to Docker Hub
