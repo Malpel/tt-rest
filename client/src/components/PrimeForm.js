@@ -57,9 +57,9 @@ const PrimeForm = () => {
           <p>Select action above</p>
           : <div>
             {action === actions.CHECKPRIME ?
-              <input type='number' value={input} onInput={e => setInput(e.target.value)}
+              <input id='check' type='number' value={input} onInput={e => setInput(e.target.value)}
                 placeholder='Enter an integer' style={inputStyle} />
-              : <input value={input} onInput={e => setInput(e.target.value)}
+              : <input id='sum' value={input} onInput={e => setInput(e.target.value)}
                 placeholder='Enter a list of integers, e.g. 1,2,3' style={inputStyle} />}
             <button type="submit" style={submitStyle}>Submit</button>
           </div>

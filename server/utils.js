@@ -11,19 +11,19 @@ const parseAndSum = (intString) => {
     integers.push(int);
   }
 
-  console.log(integers);
-
   return integers.reduce((prev, current) => prev + current, 0);
 };
 
 const parseInteger = (int) => {
+  if (!int) return -1;
+
   const intRegex = /^[0-9]+$/;
   if (int.match(intRegex)) return parseInt(int);
   return -1;
 };
 
 const isPrime = (int) => {
-  if (int <=3 ) {
+  if (int <= 3) {
     return int > 1;
   }
 
@@ -31,8 +31,8 @@ const isPrime = (int) => {
     return false;
   }
 
-  for (let i = 5; Math.pow(i, 2) <= int; i+=6) {
-    if ( int % i === 0 ||  int % (i + 2) === 0) {
+  for (let i = 5; Math.pow(i, 2) <= int; i += 6) {
+    if (int % i === 0 || int % (i + 2) === 0) {
       return false;
     }
   }

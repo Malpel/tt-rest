@@ -1,5 +1,6 @@
 export const buttonStyle = {
   backgroundColor: 'white',
+  border: 'none',
   padding: '15px',
   textAlign: 'center',
   textDecoration: 'none',

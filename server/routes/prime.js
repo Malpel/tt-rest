@@ -17,9 +17,9 @@ router.get('/', (req, res) => {
     result.sum = sum;
     result.isPrime = isPrime(sum);
   } else if (action === actions.CHECKPRIME) {
-    const int = req.query.integer;
+    const int = parseInteger(req.query.integer);
 
-    if (!int || parseInteger(int) === -1) return res.status(400).send({ error: 'malformed request' });
+    if (int === -1) return res.status(400).send({ error: 'malformed request' });
 
     result.integer = int;
     result.isPrime = isPrime(int);
