@@ -21,11 +21,19 @@ jobs:
           npm test
       env:
         PORT: ${{ secrets.PORT }}
-    - name: e2e
-      working-directory: client
-      run: |
-          npm ci
-          npm run test:e2e
+
+  cypress-run:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: cypress-io/github-action@v2
+      - name: start client
+        working-directory: client
+        run: npm start
+      - name: start server
+        run: npm run start:test
+        with:
+          wait-on: "http://localhost:3000, http://localhost:3001"
 
   Push_server_to_Docker:
     name: Push server image to Docker Hub
