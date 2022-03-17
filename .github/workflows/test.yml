@@ -8,9 +8,6 @@ on:
 jobs:
   testing_pipeline:
     runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: server
     #services:
       # Label used to access the service container
       
@@ -19,6 +16,7 @@ jobs:
     - uses: actions/setup-node@v1        
       with:
         node-version: '16.8.0'
+        context: ./server
     - name: npm install 
       run: npm install
     - name: run lint
@@ -27,6 +25,17 @@ jobs:
       env:
         PORT: ${{ secrets.PORT }}
       run: npm test
+
+    - name: start server
+      run: npm start:test
+    
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+        context: ./client
+        build: npm run build
+        start: npm start
+        wait-on: 'http://localhost:3000', 'http://localhost:3001'
 
   Push_server_to_Docker:
     name: Push server image to Docker Hub
@@ -67,3 +76,5 @@ jobs:
           tags: malpel/tt-client:latest
           context: .
           file: ./client/Dockerfile
+
+      
