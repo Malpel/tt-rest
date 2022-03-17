@@ -12,11 +12,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Compose
         run: docker-compose up -d
-      - name: Switch directory
-        run: cd client
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-    
+    container: cypress/included:4.11.0
+    steps:
+      - uses: actions/checkout@v1
+      - run: cypress run
 
       
