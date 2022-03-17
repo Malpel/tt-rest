@@ -14,25 +14,20 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1        
-      with:
-        node-version: '16.8.0'
-        context: ./server
-    - name: npm install 
-      run: npm install
-    - name: run lint
-      run: npm run lint
-    - name: run jest tests
+    - name: npm install, lint, and test
+      working-directory: ./server
+      run: |
+          npm install
+          run lint
+          npm test
+          npm start:test
       env:
         PORT: ${{ secrets.PORT }}
-      run: npm test
-
-    - name: start server
-      run: npm start:test
     
     - name: Cypress run
       uses: cypress-io/github-action@v2
+      working-directory: ./client
       with:
-        context: ./client
         build: npm run build
         start: npm start
         wait-on: 'http://localhost:3000', 'http://localhost:3001'
