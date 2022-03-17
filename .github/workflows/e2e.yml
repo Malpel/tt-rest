@@ -14,10 +14,6 @@ jobs:
         run: docker-compose up -d
 
       - name: Cypress run
-        uses: cypress-io/github-action@v2
-        wait-on: 
-          http://localhost:3000
-          http://localhost:3001
-    
+        uses: cypress-io/github-action@v2    
 
       
