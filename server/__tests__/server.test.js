@@ -39,12 +39,12 @@ test('checkprime works and returns json', async () => {
 
 test('checkprime returns correct json for prime', async () => {
   const response = await api.get(`${checkprimeUrl}&integer=7`);
-  expect(response.body).toStrictEqual({ 'isPrime': true });
+  expect(response.body).toStrictEqual({ 'integer': 7, 'isPrime': true });
 });
 
 test('checkprime returns correct json for non-prime', async () => {
   const response = await api.get(`${checkprimeUrl}&integer=12`);
-  expect(response.body).toStrictEqual({ 'isPrime': false });
+  expect(response.body).toStrictEqual({ 'integer': 12, 'isPrime': false });
 });
 
 test('checkprime malformed request is handled appropriately', async () => {

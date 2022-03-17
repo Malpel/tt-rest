@@ -18,7 +18,7 @@ jobs:
       working-directory: server
       run: |
           npm install
-          run lint
+          npm run lint
           npm test
           npm start:test
       env:
