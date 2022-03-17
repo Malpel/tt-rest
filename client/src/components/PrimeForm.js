@@ -12,11 +12,9 @@ const PrimeForm = () => {
 
   const submitPrime = async (event) => {
     event.preventDefault();
-    console.log('User input: ', input);
 
     try {
       const res = await primeService.getPrimes(action, input);
-      console.log('Result: ', res);
       setResult(res);
     }
     catch (error) {

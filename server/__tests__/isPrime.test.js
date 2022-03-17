@@ -28,3 +28,7 @@ test('59 is a prime', () => {
 test('7321 is a prime', () => {
   expect(isPrime(1777)).toBe(true);
 });
+
+test('-5 is not a prime', () => {
+  expect(isPrime(-5)).toBe(false);
+});
