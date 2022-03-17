@@ -13,7 +13,15 @@ jobs:
       - name: Compose
         run: docker-compose up -d
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v2    
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/Cypress
+            node_modules
+          key: my-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npm i cypress
+      - uses: cypress-io/github-action@v2
+        with:
+          install: false 
 
       
