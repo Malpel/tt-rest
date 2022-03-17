@@ -2,7 +2,8 @@
 
 ## Running the program
 
-Client url: http://localhost:3000\
+Client url: http://localhost:3000
+
 Server url: http://localhost:3001
 
 In the client directory: install the dependencies with `npm install` and run the command `npm start` to start the client.
