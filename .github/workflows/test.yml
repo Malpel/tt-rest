@@ -14,12 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1        
-    - name: npm install, lint, and test
+    - name: npm install, test
       working-directory: server
       run: |
-          npm install
+          npm ci
           npm test
-          npm run start:test
       env:
         PORT: ${{ secrets.PORT }}
 
