@@ -35,7 +35,9 @@ jobs:
         context: ./client
         build: npm run build
         start: npm start
-        wait-on: 'http://localhost:3000', 'http://localhost:3001'
+        wait-on: 
+          http://localhost:3000
+          http://localhost:3001
 
   Push_server_to_Docker:
     name: Push server image to Docker Hub
