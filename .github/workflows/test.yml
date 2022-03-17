@@ -13,14 +13,21 @@ jobs:
       
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1        
+    - uses: actions/setup-node@v1
+    - name: change dir
+      run: cd server        
     - name: npm install, test
-      working-directory: server
       run: |
           npm ci
           npm test
       env:
         PORT: ${{ secrets.PORT }}
+    - name: change dir to client
+      run: cd ../client
+    - name: install deps
+      run: npm ci
+    - name: e2e
+      run: npm run test:e2e
 
   Push_server_to_Docker:
     name: Push server image to Docker Hub
