@@ -59,6 +59,7 @@ jobs:
 
   Push_client_to_Docker:
     name: Push client image to Docker Hub
+    needs: testing_pipeline
     runs-on: ubuntu-latest
     #needs: testing_pipeline
     steps:
