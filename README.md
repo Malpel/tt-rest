@@ -6,6 +6,8 @@ Client url: http://localhost:3000
 
 Server url: http://localhost:3001
 
+API endpoint: http://localhost:3001/api/primes
+
 In the client directory: install the dependencies with `npm install` and run the command `npm start` to start the client.
 
 In the server direcotry: install the dependencies with `npm install` and run the command `npm start` to start the server.
@@ -28,6 +30,8 @@ End-to-end -tests can be executed with the command `npm run test:e2e` in the cli
 When submitting integers through the client pressing the enter-key will not submit the data. Instead, clicking the submit-button might be required.
 
 Responds to negative integers with status 400. However, negative integers cannot be primes.
+
+Trailing commas will result in status 400.
 
 Building Docker images from the Dockerfiles will not work out of the box. This is because of the workflow.
 

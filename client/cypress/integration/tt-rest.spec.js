@@ -6,7 +6,7 @@ describe('tt-rest ', function() {
   });
 
   it('front page can be opened', function() {
-    cy.contains('Hello, World!');
+    cy.contains('tt-rest primes');
     cy.contains('Select action above');
   });
 
